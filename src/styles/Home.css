@@ -1,0 +1,33 @@
+
+
+.jumbotron {
+    margin: 10em 10%;
+    background: rgb(228, 216, 216); 
+    background: rgba(235, 232, 232, 0.945); 
+    border-radius: 1.5em;
+    min-width: 80%;
+    
+    
+    
+  }
+  .person-wrapper {
+    margin-bottom: 2em;
+  }
+  
+ 
+  
+  .btn-primary {
+    /* margin-left: 10px; */
+    background-image: none;
+    border: none;
+    border-radius: 1.5em;
+    background-color: rgb(114, 38, 38);
+    
+  }
+  
+  
+  h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 1em;
+  }
+

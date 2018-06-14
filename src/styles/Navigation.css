@@ -1,0 +1,23 @@
+.navbar{
+    background: rgb(114, 38, 38);
+    height: 53px;
+}
+.navbar-header{
+    border-bottom-style: 0;
+}
+
+.navbar-brand{
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand>img{
+    padding: 11px 14px;
+    height: 72px;
+}
+.navbar-inverse{
+    border-radius: 0px
+}
+.navbar-collapse{
+    background: rgb(114, 38, 38);
+}
