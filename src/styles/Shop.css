@@ -1,3 +1,12 @@
+.btn{
+    align-items: center;
+    margin-top: 9px;
+    margin-left: 25px;
+    background-color: #E8C65E;
+    
+}
+
+
 @media screen and (min-device-width:698px) {
     div#showgrid {
       width: 698px;
@@ -23,7 +32,7 @@
     .column {
       width: 230px;
       height: 230px;
-      display: inline;
+      /* display: inline; */
       float: left;
     }
   }

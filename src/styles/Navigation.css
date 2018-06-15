@@ -3,6 +3,7 @@
     height: 53px;
 }
 .navbar-header{
+    
     border-bottom-style: 0;
 }
 
@@ -21,3 +22,4 @@
 .navbar-collapse{
     background: rgb(114, 38, 38);
 }
+

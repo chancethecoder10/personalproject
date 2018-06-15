@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Image } from 'react-bootstrap'
+import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Image, Button } from 'react-bootstrap'
 import '../styles/Navigation.css'
 
 class Navigation extends Component {
@@ -28,12 +28,16 @@ class Navigation extends Component {
                             <NavItem eventKey={4} componentClass={Link} href="/locations" to='/locations'>
                                 Locations
                             </NavItem>
-                           
                         </Nav>
-                        <Nav pullRight>
-                            <NavItem eventKey={3} componentClass={Link} href="/shop" to='/shop'>
+                        <Nav pullRight>            
+                            {/* <NavItem eventKey={3} componentClass={Link} href="/shop" to='/shop'>
                                 Shop
-                            </NavItem>
+                            </NavItem> */}
+                            <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
+                            <a href={process.env.REACT_APP_LOGIN}>
+                             <Button bsStyle='warning'>Log In To Shop</Button>
+                             </a>
+                                </NavItem>
                             <NavItem eventKey={5} componentClass={Link} href='/cart' to='/cart'>
                                 Cart
                             </NavItem>
@@ -47,6 +51,11 @@ class Navigation extends Component {
                                 <MenuItem eventKey={6.4} componentClass={Link} href='/feedback' to='/feedback'>Feedback</MenuItem>
 
                             </NavDropdown>
+                               {/* <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
+                           <a href='http://localhost:3000/#/'>
+                            <Button bsStyle='danger'>Logout</Button>
+                            </a>
+                               </NavItem> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

@@ -1,0 +1,20 @@
+insert into products
+(
+product_id,
+product_name,
+price,
+quant,
+product_desc,
+roast,
+decaf
+)
+values
+(
+$1,
+$2,
+$3,
+$4,
+$5,
+$6,
+$7
+);
