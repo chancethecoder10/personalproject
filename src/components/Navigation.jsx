@@ -35,7 +35,7 @@ class Navigation extends Component {
                             </NavItem> */}
                             <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
                             <a href={process.env.REACT_APP_LOGIN}>
-                             <Button bsStyle='warning'>Log In To Shop</Button>
+                             <Button bsStyle='warning'>Purchase Beans</Button>
                              </a>
                                 </NavItem>
                             <NavItem eventKey={5} componentClass={Link} href='/cart' to='/cart'>
