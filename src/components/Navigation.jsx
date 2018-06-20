@@ -30,9 +30,6 @@ class Navigation extends Component {
                             </NavItem>
                         </Nav>
                         <Nav pullRight>            
-                            {/* <NavItem eventKey={3} componentClass={Link} href="/shop" to='/shop'>
-                                Shop
-                            </NavItem> */}
                             <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
                             <a href={process.env.REACT_APP_LOGIN}>
                              <Button bsStyle='warning'>Purchase Beans</Button>
@@ -51,11 +48,6 @@ class Navigation extends Component {
                                 <MenuItem eventKey={6.4} componentClass={Link} href='/feedback' to='/feedback'>Feedback</MenuItem>
 
                             </NavDropdown>
-                               {/* <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
-                           <a href='http://localhost:3000/#/'>
-                            <Button bsStyle='danger'>Logout</Button>
-                            </a>
-                               </NavItem> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

@@ -9,14 +9,14 @@
 
 @media screen and (min-device-width:698px) {
     div#showgrid {
-      width: 698px;
+      width: 90%;
       margin: auto;
     }
   }
   
   div.column {
-    border-style: solid;
-    border-width: 15px;
+    border-style: none;
+    border-width: 5px;
     background-image: url('../assets/beans.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -28,6 +28,13 @@
     margin: auto;
   }
   
+  div.column:hover{
+    opacity: 0.65;
+    background: #e39f47;
+  }
+
+
+
   @media (min-device-width: 698px) {
     .column {
       width: 230px;
@@ -42,3 +49,12 @@
     height: 230px;
     margin: auto;
   }
+
+
+  @media (min-device-width: 698px) {
+    .column {
+      width: calc(100%/3);
+     
+    }
+  }
+  

@@ -2,9 +2,10 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const passport = require('passport')
+const bodyParser = require('body-parser')
 const massive = require('massive')
 const Auth0Strategy = require('passport-auth0')
-
+const ctrl = require('../server/ctrl')
 
 
 const {
@@ -19,6 +20,8 @@ const {
 } = process.env
 
 const app = express()
+
+app.use(bodyParser.json())
 
 massive(CONNECTION_STRING).then( db => {
     app.set('db', db)
@@ -81,7 +84,7 @@ app.get('/auth/user', (req, res) => {
 })
 
 //endpoints go here
-
+app.get('/api/products', ctrl.getAll)
 
 
 app.listen(SERVER_PORT, () => {

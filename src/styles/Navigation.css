@@ -23,3 +23,8 @@
     background: rgb(114, 38, 38);
 }
 
+@media (min-width: 768px){
+    .container{
+        width: 100%;
+    }
+}
