@@ -1,49 +1,61 @@
 import React, { Component } from 'react'
-import { Jumbotron } from 'react-bootstrap'
-import {connect} from 'react-redux'
-import {getProducts, getUser} from '../ducks/user'
+import { Jumbotron, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { getProducts, getUser } from '../ducks/user'
 import '../styles/Shop.css'
 
 class Shop extends Component {
+    constructor() {
+        super()
 
+        this.state = {
+            toggle: false
+        }
+        this.handleToggle = this.handleToggle.bind(this)
+    }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getProducts()
         this.props.getUser()
-        
+
     }
-    
-    
+
+    handleToggle() {
+        this.setState({
+            toggle: !this.state.toggle
+        })
+    }
+
+
     render() {
-        console.log(this.props.user)
-        console.log(this.props.products)
-        let productDisplay = this.props.products.map((element, index) =>{
-            return(
-                <div className='product-container' key={index}>
-                <h2>{element.product_name}</h2>
-                <h2>{element.price}</h2>
-                <h2>{element.roast}</h2>
-                <h2>{element.product_desc}</h2>
+
+        let productDisplay = this.props.products.map((e, i) => {
+
+            return (
+
+                <div onMouseEnter={() => this.handleToggle()} key={i}>
+
+                    <div className="column">
+                        <div className='product-container'>
+                            <div className='onhoverinfo'>
+                                <p>{e.product_name}</p>
+                                <br />
+                                <p>Roast: {e.roast}</p>
+                                <br />
+                                <p>{e.price}</p>
+                                <Button bsStyle="info">Add To Cart</Button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             )
         })
         return (
             <Jumbotron className='shopotron'>
                 <div id="showgrid">
                     <div className="row">
-                        <div className="column"></div>
-                        <div className="column"></div>
-                        <div className="column"></div>
-                    </div>
-                    <div className="row">
-                        <div className="column"></div>
-                        <div className="column"></div>
-                        <div className="column"></div>
-                    </div>
-                    <div className="row">
-                        <div className="column"></div>
-                        <div className="column"></div>
-                        <div className="column"></div>
+                        {productDisplay}
                     </div>
                 </div>
             </Jumbotron>
@@ -51,8 +63,8 @@ class Shop extends Component {
     }
 }
 
-function mapStateToProps(state){
-    return{
+function mapStateToProps(state) {
+    return {
         products: state.products,
         user: state.user
     }
@@ -60,4 +72,4 @@ function mapStateToProps(state){
 
 
 
-export default connect(mapStateToProps, {getProducts, getUser})(Shop)
+export default connect(mapStateToProps, { getProducts, getUser })(Shop)
