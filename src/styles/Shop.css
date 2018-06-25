@@ -5,7 +5,9 @@
     background-color: #E8C65E;
     
 }
-
+.hr{
+  border-top-color: black;
+}
 
 @media screen and (min-device-width:698px) {
     div#showgrid {

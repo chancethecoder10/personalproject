@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const massive = require('massive')
 const Auth0Strategy = require('passport-auth0')
 const ctrl = require('../server/ctrl')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 
 const {
@@ -16,6 +17,7 @@ const {
     CLIENT_ID,
     CLIENT_SECRET,
     CALLBACK_URL,
+    
 
 } = process.env
 
@@ -80,10 +82,35 @@ app.get('/auth/user', (req, res) => {
     } else {
         res.status(401).send('Unauthorized')
     }
+    
 })
 
 //endpoints go here
 app.get('/api/products', ctrl.getAll)
+
+// Stripe 
+
+app.post('/charge', function(req,res,next){
+    const amount = req.body.total * 100
+    const charge = stripe.charges.create({
+        amount,
+        currency: 'usd',
+        source: req.body.token.id,
+        description: 'Test Charge'
+    }, function(err, charge) {
+        if (err) return res.sendStatus(500)
+        return res.sendStatus(200);
+    });
+})
+
+
+
+
+
+
+
+
+
 
 
 app.listen(SERVER_PORT, () => {

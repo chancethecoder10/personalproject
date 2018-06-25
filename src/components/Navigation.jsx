@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Image, Button } from 'react-bootstrap'
 import '../styles/Navigation.css'
 
 class Navigation extends Component {
+    constructor(){
+        super()
+
+        this.state = {
+            
+        }
+    }
 
     render() {
         return (
@@ -29,23 +37,35 @@ class Navigation extends Component {
                                 Locations
                             </NavItem>
                         </Nav>
-                        <Nav pullRight>            
-                            <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
-                            <a href={process.env.REACT_APP_LOGIN}>
-                             <Button bsStyle='warning'>Purchase Beans</Button>
-                             </a>
-                                </NavItem>
-                            <NavItem eventKey={5} componentClass={Link} href='/cart' to='/cart'>
+                        <Nav pullRight>
+                        <NavItem eventKey={5} componentClass={Link} href='/shop' to='/shop'>
+                                Shop
+                            </NavItem>            
+                            <NavItem eventKey={6} componentClass={Link} href='/cart' to='/cart'>
                                 Cart
                             </NavItem>
-                            <NavDropdown eventKey={6} title="Contact Us" id="basic-nav-dropdown">
-                                <MenuItem eventKey={6.1} componentClass={Link}  href='/careers' to='/careers'>Careers</MenuItem>
+                            {
+                                this.props.user.user_id ? <NavItem componentClass='span' href='http://localhost:3005/auth/logout'>
+                                 <a href='http://localhost:3005/auth/logout'>
+                                <Button bsStyle='danger'>Logout</Button>
+                                </a>
+                                </NavItem>
+                                :
+                                
+                                <NavItem componentClass='span' href={process.env.REACT_APP_LOGIN}>
+                                <a href={process.env.REACT_APP_LOGIN}>
+                                <Button bsStyle='warning'>Login</Button>
+                                </a>
+                                </NavItem>
+                            }
+                            <NavDropdown eventKey={7} title="Contact Us" id="basic-nav-dropdown">
+                                <MenuItem eventKey={7.1} componentClass={Link}  href='/careers' to='/careers'>Careers</MenuItem>
                                 <MenuItem divider />
-                                <MenuItem eventKey={6.2} componentClass={Link} href='/wholesale' to='/wholesale'>Wholesale</MenuItem>
+                                <MenuItem eventKey={7.2} componentClass={Link} href='/wholesale' to='/wholesale'>Wholesale</MenuItem>
                                 <MenuItem divider />
-                                <MenuItem eventKey={6.3} componentClass={Link} href='/inquiries' to='/inquiries'>Buisness Inquiries</MenuItem>
+                                <MenuItem eventKey={7.3} componentClass={Link} href='/inquiries' to='/inquiries'>Buisness Inquiries</MenuItem>
                                 <MenuItem divider />
-                                <MenuItem eventKey={6.4} componentClass={Link} href='/feedback' to='/feedback'>Feedback</MenuItem>
+                                <MenuItem eventKey={7.4} componentClass={Link} href='/feedback' to='/feedback'>Feedback</MenuItem>
 
                             </NavDropdown>
                         </Nav>
@@ -56,4 +76,10 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, {})(Navigation)

@@ -3,12 +3,15 @@ import axios from 'axios'
 const initialState = {
     products: [],
     user: {},
-    
+    shoppingCart: [],
+    total: 0
 }
 
 const GET_USER_DATA = 'GET_USER_DATA'
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
-
+const ADD_TO_SHOPPING_CART = 'ADD_TO_SHOPPING_CART'
+const REMOVE_FROM_SHOPPING_CART = 'REMOVE_FROM_SHOPPING_CART'
+const CLEAR_CART = 'CLEAR_CART'
 
 
 
@@ -17,9 +20,37 @@ export default function reducer( state = initialState, action) {
     switch(action.type){
         case GET_USER_DATA + '_FULFILLED':
         return Object.assign({}, state, {user: action.payload})
+        
+
         case GET_ALL_PRODUCTS + '_FULFILLED':
-        console.log(action.payload)
         return Object.assign({}, state, {products: action.payload})
+
+
+        case ADD_TO_SHOPPING_CART:
+        // return Object.assign({}, state, {shoppingCart: [...state.shoppingCart, action.payload]})
+        return {
+            ...state,
+            shoppingCart: [...state.shoppingCart, action.payload],
+            total: state.total += +action.price
+        }
+
+        case REMOVE_FROM_SHOPPING_CART:
+        // let newArray = state.shoppingCart.slice()
+        // newArray.splice(action.index, 1)
+        // return Object.assign({}, state, {shoppingCart: newArray})
+        return {
+            ...state,
+            shoppingCart: state.shoppingCart.filter((product) => action.payload !== product),
+            total: state.total -= +action.price
+        }
+        case CLEAR_CART:
+        return{
+            ...state,
+            shoppingCart: [],
+            total: 0
+        }
+
+
         default:
             return state;
     }
@@ -43,5 +74,27 @@ export function getProducts(){
     return {
         type: GET_ALL_PRODUCTS,
         payload: allProducts
+    }
+}
+
+export function addToShoppingCart(product){
+    return {
+        type: ADD_TO_SHOPPING_CART,
+        payload: product,
+        price: product.price
+    }
+}
+
+export function removeFromShoppingCart(productIndex){
+    return {
+        type: REMOVE_FROM_SHOPPING_CART,
+        payload: productIndex,
+        price: productIndex.price
+    }
+}
+
+export function clearCart(){
+    return {
+        type: CLEAR_CART,
     }
 }
