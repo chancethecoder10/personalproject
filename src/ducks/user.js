@@ -4,7 +4,9 @@ const initialState = {
     products: [],
     user: {},
     shoppingCart: [],
-    total: 0
+    total: 0,
+   
+   
 }
 
 const GET_USER_DATA = 'GET_USER_DATA'
@@ -16,18 +18,16 @@ const CLEAR_CART = 'CLEAR_CART'
 
 
 
+
 export default function reducer( state = initialState, action) {
     switch(action.type){
         case GET_USER_DATA + '_FULFILLED':
         return Object.assign({}, state, {user: action.payload})
         
-
         case GET_ALL_PRODUCTS + '_FULFILLED':
         return Object.assign({}, state, {products: action.payload})
 
-
         case ADD_TO_SHOPPING_CART:
-        // return Object.assign({}, state, {shoppingCart: [...state.shoppingCart, action.payload]})
         return {
             ...state,
             shoppingCart: [...state.shoppingCart, action.payload],
@@ -35,14 +35,12 @@ export default function reducer( state = initialState, action) {
         }
 
         case REMOVE_FROM_SHOPPING_CART:
-        // let newArray = state.shoppingCart.slice()
-        // newArray.splice(action.index, 1)
-        // return Object.assign({}, state, {shoppingCart: newArray})
         return {
             ...state,
             shoppingCart: state.shoppingCart.filter((product) => action.payload !== product),
             total: state.total -= +action.price
         }
+
         case CLEAR_CART:
         return{
             ...state,
@@ -50,6 +48,7 @@ export default function reducer( state = initialState, action) {
             total: 0
         }
 
+       
 
         default:
             return state;

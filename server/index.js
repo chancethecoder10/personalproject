@@ -18,7 +18,6 @@ const {
     CLIENT_SECRET,
     CALLBACK_URL,
     
-
 } = process.env
 
 const app = express()

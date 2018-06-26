@@ -42,7 +42,12 @@ class Navigation extends Component {
                                 Shop
                             </NavItem>            
                             <NavItem eventKey={6} componentClass={Link} href='/cart' to='/cart'>
-                                Cart
+                                Cart {
+                                      this.props.shoppingCart.length !== 0?
+                                      this.props.shoppingCart.length 
+                                      :
+                                      null
+                                    }
                             </NavItem>
                             {
                                 this.props.user.user_id ? <NavItem componentClass='span' href='http://localhost:3005/auth/logout'>
@@ -78,7 +83,8 @@ class Navigation extends Component {
 
 function mapStateToProps(state){
     return {
-        user: state.user
+        user: state.user,
+        shoppingCart: state.shoppingCart
     }
 }
 

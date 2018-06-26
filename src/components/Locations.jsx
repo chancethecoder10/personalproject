@@ -1,9 +1,14 @@
 import React from 'react'
+import {Jumbotron} from 'react-bootstrap'
+import Map from './Map'
 
-export default function Locations(){
-    return(
-        <div>
-            <p>Locations</p>
-        </div> 
+ function Locations() {
+return(
+    <div>
+    <Jumbotron>
+        <Map />
+    </Jumbotron>
+    </div>
     )
 }
+export default Locations

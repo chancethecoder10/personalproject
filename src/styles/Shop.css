@@ -14,6 +14,7 @@
   position: absolute;
   font-size: 18px;
   color: #979393;
+  z-index: 0;
 }
 .product-name:hover{
   opacity: 1;
@@ -52,7 +53,8 @@
     color: azure;
     text-align: center;
     background: #e39f47;
-    
+    position: relative;
+    z-index: 50;
     
   }
    .onhoverinfo:hover{

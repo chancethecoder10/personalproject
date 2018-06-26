@@ -42,7 +42,7 @@ class Shop extends Component {
             return (
                 <div className='test' onMouseEnter={() => this.handleToggle()} key={i}>
                     <div className="column">
-                        <name className='product-name'>{e.product_name}</name>
+                        <div className='product-name'>{e.product_name}</div>
                         <div className='product-container'>
                         {/* {
                             

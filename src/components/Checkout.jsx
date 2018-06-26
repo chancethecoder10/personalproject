@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {clearCart} from '../ducks/user'
 import StripeCheckout from 'react-stripe-checkout'
+
 import axios from 'axios'
 import '../styles/Checkout.css'
 
@@ -10,9 +11,13 @@ class Checkout extends Component {
     constructor(){
         super()
         this.state = {
-            redirect: false
+            redirect: false,
+            show: false
         }
-        
+        this.handleShow = this.handleShow.bind(this);
+    }
+    handleShow() {
+        this.setState({ show: true });
     }
     onToken = (token) => {
         token.card = void 0;
@@ -28,7 +33,7 @@ class Checkout extends Component {
     }
     render(){
         if(this.state.redirect)
-            return <Redirect to='/thankyou'/>
+            return <Redirect to='/thankyou'/> 
         return(
             <div className='checkout'>
             <StripeCheckout
