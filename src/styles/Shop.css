@@ -9,6 +9,16 @@
   border-top-color: black;
 }
 
+ .product-name{
+  opacity: 1;
+  position: absolute;
+  font-size: 18px;
+  color: #979393;
+  
+}
+
+ 
+
 @media screen and (min-device-width:698px) {
     div#showgrid {
       width: 90%;
@@ -34,21 +44,22 @@
     opacity: 0.65;
     background: #e39f47;
   } */
-  div.onhoverinfo{
+  .onhoverinfo{
+    padding-top: 5px;
     padding: 3.7px;
     height: 100%;
     width: 100%;
     opacity: 0;
-    transition: 0.3s;
+    transition: 3s;
     color: azure;
     text-align: center;
     background: #e39f47;
     
+    
   }
-  div.onhoverinfo:hover{
+  .onhoverinfo:hover{
     opacity: 1;
   }
-  
   
   @media (min-device-width: 698px) {
     .column {

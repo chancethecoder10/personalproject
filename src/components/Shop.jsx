@@ -43,6 +43,7 @@ class Shop extends Component {
                 <div onMouseEnter={() => this.handleToggle()} key={i}>
                     <div className="column">
                         <div className='product-container'>
+                            <div className='product-name'>{e.product_name}</div>
                             <div className='onhoverinfo'>
                                 <p>{e.product_name}</p>
                                 <br />
