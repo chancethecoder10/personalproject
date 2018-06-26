@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Image, Button } from 'react-bootstrap'
+import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Image, Button, Badge} from 'react-bootstrap'
 import '../styles/Navigation.css'
 
 class Navigation extends Component {
@@ -42,12 +42,14 @@ class Navigation extends Component {
                                 Shop
                             </NavItem>            
                             <NavItem eventKey={6} componentClass={Link} href='/cart' to='/cart'>
-                                Cart {
+                                Cart <Badge>{
+                                      
                                       this.props.shoppingCart.length !== 0?
                                       this.props.shoppingCart.length 
                                       :
                                       null
-                                    }
+                                      
+                                    }</Badge>
                             </NavItem>
                             {
                                 this.props.user.user_id ? <NavItem componentClass='span' href='http://localhost:3005/auth/logout'>

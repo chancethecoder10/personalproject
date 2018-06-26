@@ -22,7 +22,9 @@
 .navbar-collapse{
     background: rgb(114, 38, 38);
 }
-
+.badge{
+    background: #5C9A4F;
+}
 @media (min-width: 768px){
     .container{
         width: 100%;
