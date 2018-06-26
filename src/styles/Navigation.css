@@ -23,7 +23,9 @@
     background: rgb(114, 38, 38);
 }
 .badge{
-    background: #5C9A4F;
+    background: rgb(218, 57, 57);
+    margin-bottom: 4px;
+    z-index: 20;
 }
 @media (min-width: 768px){
     .container{
