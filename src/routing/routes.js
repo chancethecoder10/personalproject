@@ -10,6 +10,7 @@ import Careers from '../components/Careers'
 import Wholesale from '../components/Wholesale'
 import BizInq from '../components/BizInq'
 import Feedback from '../components/Feedback'
+import Thankyou from '../components/Thankyou'
 
 
 export default(
@@ -24,5 +25,6 @@ export default(
         <Route path='/wholesale' component={Wholesale}/>
         <Route path='/inquiries' component={BizInq}/>
         <Route path='/feedback' component={Feedback}/>
+        <Route path='/thankyou' component={Thankyou}/>
     </Switch>
 )

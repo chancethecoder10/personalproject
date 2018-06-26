@@ -9,16 +9,19 @@
   border-top-color: black;
 }
 
- .product-name{
+.product-name{
   opacity: 1;
   position: absolute;
   font-size: 18px;
   color: #979393;
-  
 }
-
- 
-
+.product-name:hover{
+  opacity: 1;
+  color: #e39f47;
+}
+.test:hover name{
+  opacity: 0;
+}
 @media screen and (min-device-width:698px) {
     div#showgrid {
       width: 90%;
@@ -32,7 +35,6 @@
     background-image: url('../assets/beans.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
-    
   }
   
   .row {
@@ -40,27 +42,23 @@
     margin: auto;
   }
   
-  /* div.column:hover{
-    opacity: 0.65;
-    background: #e39f47;
-  } */
   .onhoverinfo{
     padding-top: 5px;
     padding: 3.7px;
     height: 100%;
     width: 100%;
     opacity: 0;
-    transition: 3s;
+    transition: 0.3s;
     color: azure;
     text-align: center;
     background: #e39f47;
     
     
   }
-  .onhoverinfo:hover{
+   .onhoverinfo:hover{
     opacity: 1;
-  }
-  
+  } 
+
   @media (min-device-width: 698px) {
     .column {
       width: 230px;

@@ -96,7 +96,7 @@ app.post('/charge', function(req,res,next){
         amount,
         currency: 'usd',
         source: req.body.token.id,
-        description: 'Test Charge'
+        description: 'Quality Beans'
     }, function(err, charge) {
         if (err) return res.sendStatus(500)
         return res.sendStatus(200);

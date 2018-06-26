@@ -8,7 +8,7 @@ class Shop extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            toggle: false,
+            toggle: true,
             notLoggedIn: false,
             show: true
         }
@@ -40,14 +40,22 @@ class Shop extends Component {
     render() {
         let productDisplay = this.props.products.map((e, i) => {
             return (
-                <div onMouseEnter={() => this.handleToggle()} key={i}>
+                <div className='test' onMouseEnter={() => this.handleToggle()} key={i}>
                     <div className="column">
+                        <name className='product-name'>{e.product_name}</name>
                         <div className='product-container'>
+                        {/* {
+                            
+                            this.state.toggle ?
                             <div className='product-name'>{e.product_name}</div>
+                            :
+                            null
+                            
+                        } */}
                             <div className='onhoverinfo'>
                                 <p>{e.product_name}</p>
                                 <br />
-                                <p>Roast: {e.roast}</p>
+                                <p>{e.roast} Roast</p>
                                 <br />
                                 <p>{e.price}</p>
                                 <Button bsStyle="info" onClick={() => this.addToCart(e)}>Add To Cart</Button>
