@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import { Button,  Modal} from 'react-bootstrap'
 
-class Example extends React.Component {
+class Thankyou extends Component {
     constructor(props, context) {
       super(props, context);
   
@@ -41,7 +41,7 @@ class Example extends React.Component {
             </Modal.Body>
             <Modal.Footer>
                 <Button bsStyle='success' componentClass={Link} href='/locations' to='/locations'>Directions</Button>
-              <Button onClick={this.handleClose} componentClass={Link} href='/shop' to='/shop'>Close</Button>
+              <Button onClick={this.handleClose} componentClass={Link} href='/cart' to='/cart'>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>
@@ -50,4 +50,4 @@ class Example extends React.Component {
   }
   
  
-  export default Example
+  export default Thankyou
