@@ -48,8 +48,6 @@ export default function reducer( state = initialState, action) {
             total: 0
         }
 
-       
-
         default:
             return state;
     }

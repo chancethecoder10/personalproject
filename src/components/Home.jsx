@@ -12,7 +12,7 @@ class Home extends Component {
                             <Col xs={12} md={4}>
                             <Image responsive={true} src="https://s3-media3.fl.yelpcdn.com/bphoto/9XCsqNJCCypVApjWF6vXkg/o.jpg" thumbnail />
                             </Col>
-                            <h3>San Francisco Coffee Roasting Co.</h3>
+                            <Image src={require('../assets/sanfranlogo.png')}  responsive={true} thumbnail={true}/>
                             <p>Your Atlanta neighborhood coffee roaster since 1992, with 
                                     3 locations to serve you.
                                     <br/><br/> 

@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 massive(CONNECTION_STRING).then( db => {
     app.set('db', db)
 })
-
+//////////////////////////////////////////////////////////////////////////////AUTH and SESSIONS
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
@@ -83,11 +83,11 @@ app.get('/auth/user', (req, res) => {
     }
     
 })
-
+/////////////////////////////////////////////////////////////////////////////////////////
 //endpoints go here
 app.get('/api/products', ctrl.getAll)
 
-// Stripe 
+///////////////////////////////////////////////////////////////////////////////////////// Stripe 
 
 app.post('/charge', function(req,res,next){
     const amount = req.body.total * 100
@@ -101,12 +101,6 @@ app.post('/charge', function(req,res,next){
         return res.sendStatus(200);
     });
 })
-
-
-
-
-
-
 
 
 
