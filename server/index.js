@@ -91,7 +91,7 @@ app.post('/api/addToCart/:id', ctrl.addToCart)
 app.delete('/api/cartDelete/:id', ctrl.deleteCartItem)
 ///////////////////////////////////////////////////////////////////////////////////////// Stripe 
 
-app.post('/charge', function(req,res,next){
+app.post('/charge/:id', function(req,res,next){
     const amount = req.body.total * 100
     const charge = stripe.charges.create({
         amount,
@@ -100,7 +100,11 @@ app.post('/charge', function(req,res,next){
         description: 'Quality Beans'
     }, function(err, charge) {
         if (err) return res.sendStatus(500)
-        return res.sendStatus(200);
+        const db = req.app.get('db')
+        const { id } = req.params
+        db.clear_cart([id])
+        .then(cart => res.status(200).send(cart))
+        // return res.sendStatus(200);
     });
 })
 

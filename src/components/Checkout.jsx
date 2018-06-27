@@ -13,29 +13,35 @@ class Checkout extends Component {
         this.state = {
             redirect: false,
             show: false,
+            id: ''
         }
         this.handleShow = this.handleShow.bind(this);
+    }
+    componentDidMount(){
+        axios.get('/auth/user').then(res => {
+            this.setState({
+                id: res.data.user_id
+            })
+        })
     }
     handleShow() {
         this.setState({ show: true });
     }
-    clearCart(){
-        
-    }
+   
     onToken = (token) => {
         token.card = void 0;
-        axios.post('/charge',{token, total: this.props.total}).then((res)=> {
+        axios.post(`/charge/${this.state.id}`,{token, total: this.props.total}).then((res)=> {
             if(res.status === 200) {
                 this.setState({
                     redirect: true
                 })
-                this.props.clearCart()
+                
             }
             console.log(res)
         })
     }
     render(){
-        console.log(this.props)
+        console.log(this.state)
         if(this.state.redirect)
             return <Redirect to='/thankyou'/> 
         return(
