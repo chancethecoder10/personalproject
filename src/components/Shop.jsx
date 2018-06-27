@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Jumbotron, Button, Alert } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { getProducts, getUser, addToShoppingCart } from '../ducks/user'
+import { getProducts, getUser } from '../ducks/user'
 import '../styles/Shop.css'
+import axios from 'axios';
 
 class Shop extends Component {
     constructor(props, context) {
@@ -28,9 +29,16 @@ class Shop extends Component {
             toggle: !this.state.toggle
         })
     }
-    addToCart(e){
+    addToCart(id, e){
         if( this.props.user.user_id ){
-            this.props.addToShoppingCart(e)
+            axios.post(`/api/addToCart/${id}`).then(
+                cart => {
+                   //Send cart to action creator
+                   console.log(cart)
+                   //That will update the global shopping cart in redux 
+                }
+            )
+            // this.props.addToShoppingCart(e)
         } else {
             this.setState({
                 notLoggedIn: true
@@ -58,7 +66,7 @@ class Shop extends Component {
                                 <p>{e.roast} Roast</p>
                                 <br />
                                 <p>{e.price}</p>
-                                <Button bsStyle="info" onClick={() => this.addToCart(e)}>Add To Cart</Button>
+                                <Button bsStyle="info" onClick={() => this.addToCart(e.product_id)}>Add To Cart</Button>
                             </div>
                         </div>
                     </div>
@@ -89,4 +97,4 @@ function mapStateToProps(state) {
         user: state.user
     }
 }
-export default connect(mapStateToProps, { getProducts, getUser, addToShoppingCart })(Shop)
+export default connect(mapStateToProps, { getProducts, getUser })(Shop)

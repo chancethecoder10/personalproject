@@ -5,8 +5,6 @@ const initialState = {
     user: {},
     shoppingCart: [],
     total: 0,
-   
-   
 }
 
 const GET_USER_DATA = 'GET_USER_DATA'
@@ -14,6 +12,7 @@ const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_TO_SHOPPING_CART = 'ADD_TO_SHOPPING_CART'
 const REMOVE_FROM_SHOPPING_CART = 'REMOVE_FROM_SHOPPING_CART'
 const CLEAR_CART = 'CLEAR_CART'
+
 
 
 

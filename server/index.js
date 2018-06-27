@@ -86,7 +86,9 @@ app.get('/auth/user', (req, res) => {
 /////////////////////////////////////////////////////////////////////////////////////////
 //endpoints go here
 app.get('/api/products', ctrl.getAll)
-
+app.get('/api/userCart/:id', ctrl.getUserCart)
+app.post('/api/addToCart/:id', ctrl.addToCart)
+app.delete('/api/cartDelete/:id', ctrl.deleteCartItem)
 ///////////////////////////////////////////////////////////////////////////////////////// Stripe 
 
 app.post('/charge', function(req,res,next){

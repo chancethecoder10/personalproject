@@ -12,12 +12,15 @@ class Checkout extends Component {
         super()
         this.state = {
             redirect: false,
-            show: false
+            show: false,
         }
         this.handleShow = this.handleShow.bind(this);
     }
     handleShow() {
         this.setState({ show: true });
+    }
+    clearCart(){
+        
     }
     onToken = (token) => {
         token.card = void 0;
@@ -32,6 +35,7 @@ class Checkout extends Component {
         })
     }
     render(){
+        console.log(this.props)
         if(this.state.redirect)
             return <Redirect to='/thankyou'/> 
         return(
@@ -47,10 +51,5 @@ class Checkout extends Component {
         )
     }
 }
-function mapStateToProps(state){
-    const{total} = state
-    return{
-        total
-    }
-}
-export default connect(mapStateToProps,{clearCart})(Checkout)
+
+export default connect(null, {clearCart})(Checkout)
