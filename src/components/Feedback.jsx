@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { Jumbotron, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 
 class Feedback extends Component {
-    constructor() {
-        super()
-
-    }
     render() {
         return (
             <Jumbotron>

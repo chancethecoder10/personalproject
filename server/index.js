@@ -17,14 +17,14 @@ const {
     CLIENT_ID,
     CLIENT_SECRET,
     CALLBACK_URL,
-    
+
 } = process.env
 
 const app = express()
 
 app.use(bodyParser.json())
 
-massive(CONNECTION_STRING).then( db => {
+massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
 })
 //////////////////////////////////////////////////////////////////////////////AUTH and SESSIONS
@@ -45,10 +45,10 @@ passport.use(new Auth0Strategy({
 
 }, (accessToken, refreshToken, extraParams, profile, done) => {
     const db = app.get('db')
-    
-    let {id, displayName, email} = profile
+
+    let { id, displayName, email } = profile
     db.find_user([id]).then(user => {
-        if(user[0]) {
+        if (user[0]) {
             done(null, user[0].user_id)
         } else {
             db.create_user([displayName, email, id]).then((createdUser) => {
@@ -76,34 +76,35 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:3000/#/')
 })
 app.get('/auth/user', (req, res) => {
-    if(req.user) {
+    if (req.user) {
         res.status(200).send(req.user)
     } else {
         res.status(401).send('Unauthorized')
     }
-    
+
 })
 /////////////////////////////////////////////////////////////////////////////////////////
 //endpoints go here
+app.get('/getphotos', ctrl.getPhotos)
 app.get('/api/products', ctrl.getAll)
 app.get('/api/userCart/:id', ctrl.getUserCart)
 app.post('/api/addToCart/:id', ctrl.addToCart)
 app.delete('/api/cartDelete/:id', ctrl.deleteCartItem)
 ///////////////////////////////////////////////////////////////////////////////////////// Stripe 
 
-app.post('/charge/:id', function(req,res,next){
+app.post('/charge/:id', function (req, res, next) {
     const amount = req.body.total * 100
     const charge = stripe.charges.create({
         amount,
         currency: 'usd',
         source: req.body.token.id,
         description: 'Quality Beans'
-    }, function(err, charge) {
+    }, function (err, charge) {
         if (err) return res.sendStatus(500)
         const db = req.app.get('db')
         const { id } = req.params
         db.clear_cart([id])
-        .then(cart => res.status(200).send(cart))
+            .then(cart => res.status(200).send(cart))
         // return res.sendStatus(200);
     });
 })

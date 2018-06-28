@@ -6,15 +6,21 @@
     background: rgba(235, 232, 232, 0.945); 
     border-radius: 1.5em;
     min-width: 80%;
-    
-    
-    
-  }
+}
   .person-wrapper {
     margin-bottom: 2em;
   }
   
- 
+  .carousel-caption{
+    bottom: 1150px;
+    font-family: galada;
+    font-size: 98px;
+    border-style:  solid;
+    border-radius: 13px;
+    background: linear-gradient(rgb(114, 38, 38), rgb(255, 228, 108));
+    
+}
+
   
   .btn-primary {
     /* margin-left: 10px; */

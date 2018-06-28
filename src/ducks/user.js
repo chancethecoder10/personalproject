@@ -53,9 +53,6 @@ export default function reducer( state = initialState, action) {
 }
 
 
-
-
-
 export function getUser() {
     let userData = axios.get('/auth/user').then(res => res.data)
     return {

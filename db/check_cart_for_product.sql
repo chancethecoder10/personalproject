@@ -1,2 +1,2 @@
 select * from cart
-where product_id = $1 and user_id = $2;
+where user_id = $1 and product_id = $2;

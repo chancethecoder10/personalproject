@@ -12,7 +12,6 @@ create table products
 product_id serial primary key,
 product_name text,
 price text,
-quant int,
 product_desc text,
 roast text,
 decaf BOOLEAN
