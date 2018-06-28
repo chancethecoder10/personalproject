@@ -52,8 +52,8 @@ class Navigation extends Component {
                                     }</Badge>
                             </NavItem>
                             {
-                                this.props.user.user_id ? <NavItem componentClass='span' href='http://localhost:3005/auth/logout'>
-                                 <a href='http://localhost:3005/auth/logout'>
+                                this.props.user.user_id ? <NavItem componentClass='span' href={process.env.REACT_APP_LOGOUT}>
+                                 <a href={process.env.REACT_APP_LOGOUT}>
                                 <Button bsStyle='danger'>Logout</Button>
                                 </a>
                                 </NavItem>

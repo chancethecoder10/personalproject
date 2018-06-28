@@ -7,6 +7,7 @@ const massive = require('massive')
 const Auth0Strategy = require('passport-auth0')
 const ctrl = require('../server/ctrl')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const path = require('path')
 
 
 const {
@@ -21,7 +22,7 @@ const {
 } = process.env
 
 const app = express()
-
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.json())
 
 massive(CONNECTION_STRING).then(db => {
@@ -69,11 +70,11 @@ passport.deserializeUser((primaryKeyID, done) => {
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/shop'
+    successRedirect: `${process.env.FRONTEND_URL}#/shop`
 }))
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect('http://localhost:3000/#/')
+    res.redirect(`${process.env.FRONTEND_URL}#/`)
 })
 app.get('/auth/user', (req, res) => {
     if (req.user) {
@@ -111,6 +112,9 @@ app.post('/charge/:id', function (req, res, next) {
 
 
 
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 
 app.listen(SERVER_PORT, () => {

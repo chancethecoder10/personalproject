@@ -1,9 +1,4 @@
 const axios = require('axios')
-
-const { INSTA_ACCESS_TOKEN } = process.env
-
-
-
 module.exports = {
     getAll: (req, res) => {
 

@@ -39,10 +39,10 @@ class Home extends Component {
 
             // </div>
             <div>
-                <Carousel>
+            <Carousel>
                     {mappedImages}
                 <Carousel.Caption >
-                <Image thumbnail src={require('../assets/sanfranlogo.png')}/>
+                {/* <Image thumbnail src={require('../assets/sanfranlogo.png')}/> */}
                     {/* <h3 className='carousel-caption'>San Francisco Coffee</h3> */}
 
                     <p>Your Atlanta neighborhood coffee roaster since 1992.</p>
