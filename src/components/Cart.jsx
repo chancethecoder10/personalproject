@@ -28,6 +28,7 @@ class Cart extends Component {
         }).then(() => {
             axios.get(`/api/userCart/${this.state.userId}`)
             .then(res => {
+                
                 this.setState({
                     cart: res.data
                 })
@@ -46,6 +47,7 @@ class Cart extends Component {
                 })
             })
     }
+    
     calculateTotal(){
         let cartTotal = 0
         for(let i = 0; i < this.state.cart.length; i++ ){
@@ -55,7 +57,6 @@ class Cart extends Component {
         })
     }
     render() {
-        console.log(this.state)
         let shoppingCartDisplay = this.state.cart.map((e, i) => {
             return (
                 <div className='shopping-cart-container' key={i}>
@@ -92,7 +93,7 @@ class Cart extends Component {
 function mapStateToProps(state) {
     return {
         shoppingCart: state.shoppingCart,
-        total: state.total
+        total: state.total,
     }
 }
 export default connect(mapStateToProps, { removeFromShoppingCart, clearCart })(Cart)

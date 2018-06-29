@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Image, Button, Badge} from 'react-bootstrap'
+import { Navbar, Nav, NavItem, Image, Button, Badge} from 'react-bootstrap'
 import '../styles/Navigation.css'
 
 class Navigation extends Component {
@@ -28,28 +28,31 @@ class Navigation extends Component {
                     <Navbar.Collapse>
                         <Nav>
                             <NavItem eventKey={1} componentClass={Link} href="/about" to='/about'>
-                                About
+                                About    
                             </NavItem>
                             <NavItem eventKey={2} componentClass={Link} href="/menu" to='/menu'>
-                                Menu
+                                Menu     
                             </NavItem>
                             <NavItem eventKey={4} componentClass={Link} href="/locations" to='/locations'>
-                                Locations
+                                Locations 
                             </NavItem>
                         </Nav>
                         <Nav pullRight>
                         <NavItem eventKey={5} componentClass={Link} href='/shop' to='/shop'>
-                                Shop
+                                Shop 
                             </NavItem>            
                             <NavItem eventKey={6} componentClass={Link} href='/cart' to='/cart'>
                                 Cart <Badge>{
                                       
-                                      this.props.shoppingCart.length !== 0?
-                                      this.props.shoppingCart.length 
+                                      this.props.cart.length !== 0?
+                                      this.props.cart.length 
                                       :
                                       null
                                       
                                     }</Badge>
+                            </NavItem>
+                            <NavItem componentClass={Link} href='/feedback' to='/feedback'>
+                                Contact Us 
                             </NavItem>
                             {
                                 this.props.user.user_id ? <NavItem componentClass='span' href={process.env.REACT_APP_LOGOUT}>
@@ -65,16 +68,8 @@ class Navigation extends Component {
                                 </a>
                                 </NavItem>
                             }
-                            <NavDropdown eventKey={7} title="Contact Us" id="basic-nav-dropdown">
-                                <MenuItem eventKey={7.1} componentClass={Link}  href='/careers' to='/careers'>Careers</MenuItem>
-                                <MenuItem divider />
-                                <MenuItem eventKey={7.2} componentClass={Link} href='/wholesale' to='/wholesale'>Wholesale</MenuItem>
-                                <MenuItem divider />
-                                <MenuItem eventKey={7.3} componentClass={Link} href='/inquiries' to='/inquiries'>Buisness Inquiries</MenuItem>
-                                <MenuItem divider />
-                                <MenuItem eventKey={7.4} componentClass={Link} href='/feedback' to='/feedback'>Feedback</MenuItem>
-
-                            </NavDropdown>
+                           <NavItem>
+                          </NavItem>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -84,9 +79,11 @@ class Navigation extends Component {
 }
 
 function mapStateToProps(state){
+    console.log(state)
     return {
         user: state.user,
-        shoppingCart: state.shoppingCart
+        shoppingCart: state.shoppingCart,
+        cart: state.cart
     }
 }
 

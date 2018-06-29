@@ -5,6 +5,7 @@ const initialState = {
     user: {},
     shoppingCart: [],
     total: 0,
+    cart: []
 }
 
 const GET_USER_DATA = 'GET_USER_DATA'
@@ -12,6 +13,7 @@ const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_TO_SHOPPING_CART = 'ADD_TO_SHOPPING_CART'
 const REMOVE_FROM_SHOPPING_CART = 'REMOVE_FROM_SHOPPING_CART'
 const CLEAR_CART = 'CLEAR_CART'
+const CART_BADGE = 'CART_BADGE'
 
 
 
@@ -19,6 +21,7 @@ const CLEAR_CART = 'CLEAR_CART'
 
 
 export default function reducer( state = initialState, action) {
+    console.log(action)
     switch(action.type){
         case GET_USER_DATA + '_FULFILLED':
         return Object.assign({}, state, {user: action.payload})
@@ -26,6 +29,9 @@ export default function reducer( state = initialState, action) {
         case GET_ALL_PRODUCTS + '_FULFILLED':
         return Object.assign({}, state, {products: action.payload})
 
+        case CART_BADGE + '_FULFILLED':
+        return  Object.assign({}, state, {cart: action.payload})
+        
         case ADD_TO_SHOPPING_CART:
         return {
             ...state,
@@ -46,7 +52,6 @@ export default function reducer( state = initialState, action) {
             shoppingCart: [],
             total: 0
         }
-
         default:
             return state;
     }
@@ -89,5 +94,12 @@ export function removeFromShoppingCart(productIndex){
 export function clearCart(){
     return {
         type: CLEAR_CART,
+    }
+}
+export function setCart(id){
+    let cart =  axios.get(`/api/userCart/${id}`).then(res => (res.data))
+    return {
+        type: CART_BADGE,
+        payload: cart
     }
 }

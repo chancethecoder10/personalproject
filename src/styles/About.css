@@ -1,5 +1,8 @@
 .doug{
     margin: 0 auto;
     display: block;
+    font: galada;
+}
+.about-text h1{
     font-family: galada;
 }

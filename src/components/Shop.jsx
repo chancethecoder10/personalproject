@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Jumbotron, Button, Alert } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { getProducts, getUser } from '../ducks/user'
+import { getProducts, getUser, setCart } from '../ducks/user'
 import '../styles/Shop.css'
 import axios from 'axios';
 
@@ -33,9 +33,7 @@ class Shop extends Component {
         if( this.props.user.user_id ){
             axios.post(`/api/addToCart/${id}`).then(
                 cart => {
-                   //Send cart to action creator
-                   console.log(cart)
-                   //That will update the global shopping cart in redux 
+                   this.props.setCart(id)
                 }
             )
             // this.props.addToShoppingCart(e)
@@ -62,9 +60,7 @@ class Shop extends Component {
                         } */}
                             <div className='onhoverinfo'>
                                 <p>{e.product_name}</p>
-                                <br />
                                 <p>{e.roast} Roast</p>
-                                <br />
                                 <p>{e.price}</p>
                                 <Button bsStyle="info" onClick={() => this.addToCart(e.product_id)}>Add To Cart</Button>
                             </div>
@@ -97,4 +93,4 @@ function mapStateToProps(state) {
         user: state.user
     }
 }
-export default connect(mapStateToProps, { getProducts, getUser })(Shop)
+export default connect(mapStateToProps, { getProducts, getUser, setCart })(Shop)

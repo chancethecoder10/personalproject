@@ -34,11 +34,13 @@
   
   div.column {
     border-style: solid;
-    border-width: 5px;
+    border-width: 23px;
     background-image: url('../assets/beans.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
+    color: #E7E5E6;
   }
+  
   
   .row {
     width: 100%;
@@ -47,8 +49,8 @@
   
   .onhoverinfo{
     padding-top: 5px;
-    padding: 3.7px;
-    height: 100%;
+    padding: 3.5px;
+    border-style: solid black;
     width: 100%;
     opacity: 0;
     transition: 0.3s;
