@@ -2,13 +2,11 @@
     align-items: center;
     margin-top: 9px;
     margin-left: 25px;
-    background-color: #E8C65E;
-    
+    background-color: #E8C65E; 
 }
 .hr{
   border-top-color: rgb(247, 241, 241);
 }
-
 .product-name{
   opacity: 1;
   position: absolute;
@@ -24,7 +22,6 @@
   border-width: 5px;
   border-radius: 9px;
   border-color: #747474
-  
 }
 .product-name:hover{
   opacity: 1;
@@ -40,7 +37,6 @@
       margin: auto;
     }
   }
-  
   div.column {
     justify-content: center;
     border-style: solid;
@@ -50,18 +46,13 @@
     background-size: cover;
     color: rgb(114, 38, 38);
   }
-  
-  
   .row {
-    
     width: 100%;
     margin: auto;
   }
-  
   .onhoverinfo{
     padding-top: 5px;
     padding: 3.5px;
-   
     width: 100%;
     opacity: 0;
     transition: 0.3s;
@@ -71,12 +62,10 @@
     position: relative;
     z-index: 50;
     font-family: galada;
-    
   }
    .onhoverinfo:hover{
     opacity: 1;
   } 
-
   @media (min-device-width: 698px) {
     .column {
       width: 230px;
@@ -85,18 +74,14 @@
       float: left;
     }
   }
-  
   .column {
     width: 230px;
     height: 230px;
     margin: auto;
   }
-
-
   @media (min-device-width: 698px) {
     .column {
       width: calc(100%/3);
-     
     }
   }
   

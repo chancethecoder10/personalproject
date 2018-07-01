@@ -4,15 +4,12 @@
     font-family: galada;
 }
 .navbar-header{
-    
     border-bottom-style: 0;
 }
-
 .navbar-brand{
     display: flex;
     align-items: center;
 }
-
 .navbar-brand>img{
     padding: 11px 14px;
     height: 72px;

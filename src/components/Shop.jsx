@@ -63,7 +63,7 @@ class Shop extends Component {
                                 <p>{e.product_name}</p>
                                 <p>{e.roast} Roast</p>
                                 <p>{e.price}</p>
-                                <Button bsStyle="info" onClick={() => this.addToCart(e.product_id)}>Add To Cart</Button>
+                                <Button onClick={() => this.addToCart(e.product_id)}>Add To Cart</Button>
                             </div>
                         </div>
                     </div>

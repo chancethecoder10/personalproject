@@ -1,0 +1,9 @@
+.contact-alert{
+    display: center;
+    border: #e9cb6e 5px solid;
+    color: #e9cb6e;
+    background: rgb(114, 38, 38);
+}
+.contact-alert h1{
+    font-family: galada;
+}

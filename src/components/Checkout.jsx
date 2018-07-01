@@ -1,14 +1,13 @@
-import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {clearCart} from '../ducks/user'
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { clearCart } from '../ducks/user'
 import StripeCheckout from 'react-stripe-checkout'
-
 import axios from 'axios'
 import '../styles/Checkout.css'
 
 class Checkout extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             redirect: false,
@@ -17,7 +16,7 @@ class Checkout extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
     }
-    componentDidMount(){
+    componentDidMount() {
         axios.get('/auth/user').then(res => {
             this.setState({
                 id: res.data.user_id
@@ -27,33 +26,31 @@ class Checkout extends Component {
     handleShow() {
         this.setState({ show: true });
     }
-   
     onToken = (token) => {
         token.card = void 0;
-        axios.post(`/charge/${this.state.id}`,{token, total: this.props.total}).then((res)=> {
-            if(res.status === 200) {
+        axios.post(`/charge/${this.state.id}`, { token, total: this.props.total }).then((res) => {
+            if (res.status === 200) {
                 this.setState({
                     redirect: true
                 })
-                this.props.clearCart() 
+                this.props.clearCart()
             }
         })
     }
-    render(){
-        if(this.state.redirect)
-            return <Redirect to='/thankyou'/> 
-        return(
+    render() {
+        if (this.state.redirect)
+            return <Redirect to='/thankyou' />
+        return (
             <div className='checkout'>
-            <StripeCheckout
-            token={this.onToken}
-            stripeKey={'pk_test_5CFGtvmT81fWdVHdgHACJH6n'}
-            amount={this.props.total * 100}
-            >
-            </StripeCheckout>
+                <StripeCheckout
+                    token={this.onToken}
+                    stripeKey={'pk_test_5CFGtvmT81fWdVHdgHACJH6n'}
+                    amount={this.props.total * 100}
+                >
+                </StripeCheckout>
             </div>
-           
+
         )
     }
 }
-
-export default connect(null, {clearCart})(Checkout)
+export default connect(null, { clearCart })(Checkout)

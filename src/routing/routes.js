@@ -6,12 +6,8 @@ import About from '../components/About'
 import Locations from '../components/Locations'
 import Shop from '../components/Shop'
 import Cart from '../components/Cart'
-import Careers from '../components/Careers'
-import Wholesale from '../components/Wholesale'
-import BizInq from '../components/BizInq'
 import Feedback from '../components/Feedback'
 import Thankyou from '../components/Thankyou'
-
 
 export default(
     <Switch>
@@ -21,9 +17,6 @@ export default(
         <Route path='/locations' component={Locations}/>
         <Route path='/shop' component={Shop}/>
         <Route path='/cart' component={Cart}/>
-        <Route path='/careers' component={Careers}/>
-        <Route path='/wholesale' component={Wholesale}/>
-        <Route path='/inquiries' component={BizInq}/>
         <Route path='/feedback' component={Feedback}/>
         <Route path='/thankyou' component={Thankyou}/>
     </Switch>

@@ -18,6 +18,7 @@ const {
     CLIENT_ID,
     CLIENT_SECRET,
     CALLBACK_URL,
+    
 
 } = process.env
 
@@ -109,13 +110,42 @@ app.post('/charge/:id', function (req, res, next) {
     });
 })
 /////////////////////////////////////////////////////////////////////////////////////////////nodemailer
-app.post('/send', function(req,res,next) {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'test-email@gmail.com',
-            pass: 'test123'
+app.post('/api/form', function(req,res) {
+    nodemailer.createTestAccount((err, account) => {
+        const htmlEmail = `
+          <h1>Contact Details</h1>
+          <ul>
+            <li>Name: ${req.body.name}</li>
+            <li>Email: ${req.body.email}</li>
+            <li>Phone: ${req.body.phone}</li>
+          </ul>
+          <h1>Message</h1>
+          <p>${req.body.message}</p>
+        `
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            auth: {
+                user: `${process.env.TEST_EMAIL}`,
+                pass: `${process.env.TEST_EMAIL_PASS}`
+            }
+        })
+        let mailOptions = {
+            from: `${req.body.email}`,
+            to: `${process.env.TEST_EMAIL}`,
+            replyTo: `${req.body.email}`,
+            subject: `New Message from ${req.body.name}`,
+            text: req.body.message,
+            html: htmlEmail
         }
+
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                return console.log(err)
+            } 
+            console.log('Message Sent: %s', info.messageId)
+            console.log('Message URL: %s', nodemailer.getTestMessageUrl(info))
+        })
     })
 })
 

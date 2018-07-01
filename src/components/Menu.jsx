@@ -4,12 +4,6 @@ import ControlledCarousel from '../components/ControlledCarousel'
 import '../styles/Menu.css'
 
 class Menu extends Component {
-    constructor() {
-        super()
-        this.state = {
-
-        }
-    }
     render() {
         return (
             <div>
@@ -17,32 +11,31 @@ class Menu extends Component {
                     <Alert className='menu-alert2'>
                         <h1>Food and Drink</h1>
                     </Alert>
-                    <br /><br/>
+                    <br /><br />
                     <ControlledCarousel />
                     <br /><br />
                     <Alert className='menu-alert'>
                         <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
                             <Tab eventKey={1} title="Drinks">
-                            <br />
+                                <br />
                                 <ul>Drip Coffee</ul>
                                 <ul>Latte</ul>
                                 <ul>Cappuccino</ul>
                                 <ul>Macchiato</ul>
                                 <ul>Cold Brew</ul>
                                 <ul>Special Blend</ul>
-
                             </Tab>
                             <Tab eventKey={2} title="Sandwiches">
-                            <br />
+                                <br />
                                 <p>All sandwiches are fresh, made-to-order on your choice of croissant, bagel, ciabatta or multigrain bread!</p>
-                            <hr />
+                                <hr />
                                 <ul>San Francisco Club</ul>
                                 <ul>Chicken Salad Sandwich</ul>
                                 <ul>Hummus B.L.T.</ul>
                                 <ul>Wasabi Egg Salad Sandwich</ul>
                             </Tab>
                             <Tab eventKey={3} title="Breakfast">
-                            <br />
+                                <br />
                                 <ul>Egg and Cheese Breakfast Sandwich</ul>
                                 <ul>Bacon Cheddar Quiche</ul>
                                 <ul>Veggie Variety Quiche</ul>
@@ -51,9 +44,9 @@ class Menu extends Component {
                                 <ul>Lo-Cal Combo</ul>
                             </Tab>
                             <Tab eventKey={4} title="Pastries">
-                            <br />
+                                <br />
                                 <p>Our pastries vary day to day, are first come first serve and made in house from scratch!</p>
-                            <hr />
+                                <hr />
                                 <ul>Muffins</ul>
                                 <ul>Croissants</ul>
                                 <ul>Cookies</ul>
@@ -70,7 +63,4 @@ class Menu extends Component {
         )
     }
 }
-
-
-
 export default Menu
