@@ -2,7 +2,15 @@
     margin: 0 auto;
     display: block;
     font: galada;
+    display: center;
 }
 .about-text h1{
     font-family: galada;
+}
+.about-alert{
+    text-align: center;
+    display: center;
+    border: #e9cb6e 5px solid;
+    color: #e9cb6e;
+    background: rgb(114, 38, 38);
 }

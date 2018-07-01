@@ -17,7 +17,6 @@ class Shop extends Component {
     }
     componentDidMount() {
         this.props.getProducts()
-        this.props.getUser()
     }
     handleDismiss(){
         this.setState({
@@ -32,9 +31,11 @@ class Shop extends Component {
     addToCart(id, e){
         if( this.props.user.user_id ){
             axios.post(`/api/addToCart/${id}`).then(
-                cart => {
-                   this.props.setCart(id)
+                res => {
+                   this.props.setCart(res.data)
+                   console.log(res.data)
                 }
+
             )
             // this.props.addToShoppingCart(e)
         } else {

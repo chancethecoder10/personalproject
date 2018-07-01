@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Jumbotron, Button, Alert, Image, Col, Grid, Badge } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { removeFromShoppingCart, clearCart } from '../ducks/user'
+import { removeFromCart, clearCart } from '../ducks/user'
 import axios from 'axios'
 import Checkout from './Checkout'
 import '../assets/sign.jpg'
@@ -18,58 +18,41 @@ class Cart extends Component {
         }
     }
     componentDidMount(){
-        axios.get('/auth/user').then(user => {
-            console.log(user.data)
-            if (user.data.name !== undefined){
-                this.setState({
-                    userId: user.data.user_id
-                })
-            }
-        }).then(() => {
-            axios.get(`/api/userCart/${this.state.userId}`)
-            .then(res => {
-                
-                this.setState({
-                    cart: res.data
-                })
-                this.calculateTotal()
-            })
-        })
+      this.calculateTotal()
     }
     deleteCartItem(id){
         axios.delete(`/api/cartDelete/${id}`)
-            .then(() => {
-                axios.get(`/api/userCart/${this.state.userId}`).then(res => {
-                    this.setState({
-                        cart: res.data
-                    })
-                    this.calculateTotal()
+            .then(res => {
+                    this.props.removeFromCart(res.data)
+                    // this.calculateTotal()
                 })
-            })
+            
     }
-    
     calculateTotal(){
         let cartTotal = 0
-        for(let i = 0; i < this.state.cart.length; i++ ){
-            cartTotal += +this.state.cart[i].price * this.state.cart[i].quant
+        for(let i = 0; i < this.props.cart.length; i++ ){
+            cartTotal += this.props.cart[i].price * this.props.cart[i].quant
         } this.setState({
             total: cartTotal
         })
     }
     render() {
-        let shoppingCartDisplay = this.state.cart.map((e, i) => {
+        let shoppingCartDisplay = this.props.cart.map((e, i) => {
             return (
                 <div className='shopping-cart-container' key={i}>
-                <Grid>    
+                <Alert className='checkout-alert'>   
+                <Grid> 
                 <h2>{e.product_name}</h2>
-                    <Col xs={3} md={3}>
-                    <Image src={require('../assets/download.jpeg')}  responsive={true} thumbnail={true}/>
+                    <Col xs={2} md={2.5}>
+                    <Image src={require('../assets/download.jpeg')}  responsive={true}/>
                     </Col>
                 <p>{e.product_desc}</p>
+                <br />
                 <h2>{e.roast} Roast</h2>
-                <h2><Button bsStyle="danger" onClick={() => this.deleteCartItem(e.cart_id)}>Remove</Button> ${e.price} <Badge bsStyle='lg, reset'>{e.quant}</Badge></h2>
-                
+                <h2><Button bsStyle="danger" onClick={() => this.deleteCartItem(e.cart_id)}>Remove</Button>${e.price} | x{e.quant}</h2>
+                <br />
                 </Grid>
+                </Alert>
                 </div >
             )
     })
@@ -77,7 +60,7 @@ class Cart extends Component {
             <Jumbotron className = 'cartotron'>
             {
                 shoppingCartDisplay[0] ?
-                <Checkout total={this.state.total}/>
+                <Checkout className='stripe-btn' total={this.state.total}/>
                 :
                 shoppingCartDisplay
             }
@@ -92,8 +75,7 @@ class Cart extends Component {
 }
 function mapStateToProps(state) {
     return {
-        shoppingCart: state.shoppingCart,
-        total: state.total,
+        cart: state.cart,
     }
 }
-export default connect(mapStateToProps, { removeFromShoppingCart, clearCart })(Cart)
+export default connect(mapStateToProps, { removeFromCart, clearCart })(Cart)

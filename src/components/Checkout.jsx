@@ -35,13 +35,11 @@ class Checkout extends Component {
                 this.setState({
                     redirect: true
                 })
-                
+                this.props.clearCart() 
             }
-            console.log(res)
         })
     }
     render(){
-        console.log(this.state)
         if(this.state.redirect)
             return <Redirect to='/thankyou'/> 
         return(

@@ -13,3 +13,12 @@
     margin-left: 25px;
     margin-right: 25px;
 }
+.checkout{
+    display: center;
+}
+.checkout-alert{
+    border: #e9cb6e 5px solid;
+    color: #e9cb6e;
+    background: rgb(114, 38, 38);
+}
+

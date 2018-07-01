@@ -28,8 +28,7 @@ module.exports = {
     },
     getUserCart: (req, res) => {
         const db = req.app.get('db')
-        const { id } = req.params
-        db.get_user_cart([id])
+        db.get_user_cart([req.user.user_id])
             .then(cart => res.status(200).send(cart))
             .catch((err) => {
                 console.log(err)
@@ -39,7 +38,7 @@ module.exports = {
     deleteCartItem: (req, res) => {
         const db = req.app.get('db')
         const { id } = req.params
-        db.cart_delete([id])
+        db.cart_delete([+id, req.user.user_id])
             .then(cart => res.status(200).send(cart))
             .catch((err) => {
                 console.log(err)

@@ -11,18 +11,6 @@
     margin-bottom: 2em;
   }
   
-  .carousel-caption{
-    top: 200px;
-    bottom: 1120px;
-    font-family: galada;
-    font-size: 98px; 
-  }
-  div.carousel-caption:p{
-    position: sticky;
-    color: linear-gradient(rgb(114, 38, 38), rgb(255, 228, 108));
-    font-size: 100px;
-  }
-  
   .btn-primary {
     /* margin-left: 10px; */
     background-image: none;
@@ -31,10 +19,15 @@
     background-color: rgb(114, 38, 38);
     
   }
-  
-  
-  .h1{
-    font-family: galada;
-    margin-bottom: 1em;
+  .home-div{
+    justify-content: center;
   }
+  
+  .home-alert{
+   display: center;
+   border: #e9cb6e 5px solid;
+   font-family: galada;
+   color: #e9cb6e;
+   background: rgb(114, 38, 38);
+ }
 

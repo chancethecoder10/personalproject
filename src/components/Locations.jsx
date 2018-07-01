@@ -9,7 +9,7 @@ return(
     <Jumbotron>
         <Map />
         <br /><br />
-        <Alert>
+        <Alert className='locations-alert'>
         <div className='store-1'><strong>Virginia Highlands</strong> - 1192 North Highland Ave NE, Atlanta, GA 30306 
         
         <Button bsStyle='info' className='directions-button'

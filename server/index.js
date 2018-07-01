@@ -8,7 +8,7 @@ const Auth0Strategy = require('passport-auth0')
 const ctrl = require('../server/ctrl')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const path = require('path')
-
+const nodemailer = require('nodemailer')
 
 const {
     SERVER_PORT,
@@ -88,11 +88,10 @@ app.get('/auth/user', (req, res) => {
 //endpoints go here
 app.get('/getphotos', ctrl.getPhotos)
 app.get('/api/products', ctrl.getAll)
-app.get('/api/userCart/:id', ctrl.getUserCart)
+app.get('/api/userCart', ctrl.getUserCart)
 app.post('/api/addToCart/:id', ctrl.addToCart)
 app.delete('/api/cartDelete/:id', ctrl.deleteCartItem)
 ///////////////////////////////////////////////////////////////////////////////////////// Stripe 
-
 app.post('/charge/:id', function (req, res, next) {
     const amount = req.body.total * 100
     const charge = stripe.charges.create({
@@ -109,8 +108,18 @@ app.post('/charge/:id', function (req, res, next) {
         // return res.sendStatus(200);
     });
 })
+/////////////////////////////////////////////////////////////////////////////////////////////nodemailer
+app.post('/send', function(req,res,next) {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'test-email@gmail.com',
+            pass: 'test123'
+        }
+    })
+})
 
-
+////////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));

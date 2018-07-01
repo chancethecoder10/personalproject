@@ -3,79 +3,59 @@ import axios from 'axios'
 const initialState = {
     products: [],
     user: {},
-    shoppingCart: [],
-    total: 0,
     cart: []
 }
 
 const GET_USER_DATA = 'GET_USER_DATA'
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_TO_SHOPPING_CART = 'ADD_TO_SHOPPING_CART'
-const REMOVE_FROM_SHOPPING_CART = 'REMOVE_FROM_SHOPPING_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const CLEAR_CART = 'CLEAR_CART'
-const CART_BADGE = 'CART_BADGE'
+const SET_CART = 'SET_CART'
 
 
 
 
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
+        case GET_USER_DATA:
+            return Object.assign({}, state, { user: action.payload })
 
-
-export default function reducer( state = initialState, action) {
-    console.log(action)
-    switch(action.type){
-        case GET_USER_DATA + '_FULFILLED':
-        return Object.assign({}, state, {user: action.payload})
-        
         case GET_ALL_PRODUCTS + '_FULFILLED':
-        return Object.assign({}, state, {products: action.payload})
+            return Object.assign({}, state, { products: action.payload })
 
-        case CART_BADGE + '_FULFILLED':
-        return  Object.assign({}, state, {cart: action.payload})
+        case SET_CART:
+            return Object.assign({}, state, { cart: action.payload })
+
+        case REMOVE_FROM_CART:
+        return Object.assign({}, state, { cart: action.payload})
         
-        case ADD_TO_SHOPPING_CART:
-        return {
-            ...state,
-            shoppingCart: [...state.shoppingCart, action.payload],
-            total: state.total += +action.price
-        }
-
-        case REMOVE_FROM_SHOPPING_CART:
-        return {
-            ...state,
-            shoppingCart: state.shoppingCart.filter((product) => action.payload !== product),
-            total: state.total -= +action.price
-        }
-
         case CLEAR_CART:
-        return{
-            ...state,
-            shoppingCart: [],
-            total: 0
-        }
+        return Object.assign({}, state,{cart: action.payload})
         default:
             return state;
     }
 }
 
 
-export function getUser() {
-    let userData = axios.get('/auth/user').then(res => res.data)
+
+export function getUser(userData) {
     return {
         type: GET_USER_DATA,
         payload: userData
     }
 }
 
-export function getProducts(){
+export function getProducts() {
     const allProducts = axios.get('/api/products').then(res => res.data)
-    
+
     return {
         type: GET_ALL_PRODUCTS,
         payload: allProducts
     }
 }
 
-export function addToShoppingCart(product){
+export function addToShoppingCart(product) {
     return {
         type: ADD_TO_SHOPPING_CART,
         payload: product,
@@ -83,23 +63,23 @@ export function addToShoppingCart(product){
     }
 }
 
-export function removeFromShoppingCart(productIndex){
+export function removeFromCart(product){
     return {
-        type: REMOVE_FROM_SHOPPING_CART,
-        payload: productIndex,
-        price: productIndex.price
+        type: REMOVE_FROM_CART,
+        payload: product
     }
 }
 
-export function clearCart(){
+export function clearCart() {
     return {
         type: CLEAR_CART,
+        payload: []
+        
     }
 }
-export function setCart(id){
-    let cart =  axios.get(`/api/userCart/${id}`).then(res => (res.data))
+export function setCart(cart) {
     return {
-        type: CART_BADGE,
+        type: SET_CART,
         payload: cart
     }
 }
