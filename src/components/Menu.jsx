@@ -11,7 +11,7 @@ class Menu extends Component {
                     <Alert className='menu-alert2'>
                         <h1>Food and Drink</h1>
                     </Alert>
-                    <br /><br />
+                    <br />
                     <ControlledCarousel />
                     <br /><br />
                     <Alert className='menu-alert'>

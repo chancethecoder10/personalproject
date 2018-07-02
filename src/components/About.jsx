@@ -17,11 +17,11 @@ class About extends Component {
                         people drawn together from all walks of life, strangers chatting, reading books, friends laughing – all gathered around a delicious social sip.
                         Today, San Francisco Coffee Roasting Company serves the in-town Atlanta communities with three stores offering the best quality,
                         fresh roasted coffee, served by a friendly, eclectic staff in a vibrant coffee house experience -- fertile grounds for a meeting of the minds,
-            where conversation and ideas flow.</p>
+                        where conversation and ideas flow.</p>
                         <br />
                         <strong>"As ‘20-somethings’ we had a passion for the best quality coffee beans, the artistic technical roasting process and a vibrant community
                         atmosphere – even back then, we knew, we just knew that this is what we wanted to do.”
-            -- Doug Bond, co-founder of San Francisco Coffee Roasting Company</strong>
+                        -- Doug Bond, co-founder of San Francisco Coffee Roasting Company</strong>
                     </Alert>
                 </div>
             </Jumbotron>

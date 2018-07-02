@@ -24,7 +24,6 @@ class Cart extends Component {
         axios.delete(`/api/cartDelete/${id}`)
             .then(res => {
                 this.props.removeFromCart(res.data)
-
             })
     }
     calculateTotal() {
@@ -58,17 +57,20 @@ class Cart extends Component {
         })
         return (
             <Jumbotron className='cartotron'>
+                {shoppingCartDisplay[0] 
+                ?
+                shoppingCartDisplay
+                : 
+                <Alert bsStyle='warning' className='cart-alert'>Your cart is <strong>empty.</strong>
+                </Alert>
+                }
                 {
-                    shoppingCartDisplay[0] ?
-                        <Checkout className='stripe-btn' total={this.state.total} />
-                        :
-                        shoppingCartDisplay
-                }
-                {shoppingCartDisplay[0] ?
+                    shoppingCartDisplay[0]
+                    ?
+                    <Checkout className='stripe-btn' total={this.state.total} />
+                    :
                     shoppingCartDisplay
-                    : <Alert bsStyle='warning' className='cart-alert'>Your cart is <strong>empty.</strong>
-                    </Alert>
-                }
+                }   
             </Jumbotron >
         )
     }

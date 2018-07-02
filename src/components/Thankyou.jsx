@@ -20,14 +20,18 @@ class Thankyou extends Component {
   render() {
     return (
       <div className='thank-you-modal'>
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
+        <Modal show={this.state.show} onHide={this.handleClose} componentClass={Link} href='/cart' to='/cart'>
+          <Modal.Header>
             <Modal.Title>Your order has been placed.</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Thank you for your purchase!</h4>
+            <h4><strong>Thank you for your purchase!</strong></h4>
             <p>
-              You can pick up your order at our Virginia Highlands location. Need directions? Click the directions button at the bottom.
+              You should recieve a confirmation SMS-text message. 
+              <hr />
+              You can pick up your order at our Virginia Highlands location.
+              <hr /> 
+              <strong> Need directions?</strong> Click the directions button at the bottom.
               </p>
           </Modal.Body>
           <Modal.Footer>

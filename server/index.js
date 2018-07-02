@@ -9,6 +9,7 @@ const ctrl = require('../server/ctrl')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const path = require('path')
 const nodemailer = require('nodemailer')
+const twilio = require('twilio')
 
 const {
     SERVER_PORT,
@@ -149,8 +150,23 @@ app.post('/api/form', function(req,res) {
     })
 })
 
-////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////twilio
 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_ACCOUNT_TOKEN;
+const client = new twilio (accountSid, authToken)
+
+
+app.post('/sendtext', (req, res) => {
+    client.messages.create({
+        body: 'Thank your for your purchase!',
+        to: process.env.MY_PHONE_NUMBER,
+        from: '+15612208279 '
+    }).then(message => console.log(message.sid))
+      .done();
+})
+
+///////////////////////////////////////////////////////////////////////////////////////////
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));
 });

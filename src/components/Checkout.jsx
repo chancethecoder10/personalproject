@@ -6,6 +6,11 @@ import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 import '../styles/Checkout.css'
 
+
+
+
+
+
 class Checkout extends Component {
     constructor() {
         super()
@@ -34,6 +39,7 @@ class Checkout extends Component {
                     redirect: true
                 })
                 this.props.clearCart()
+                axios.post('/sendtext')
             }
         })
     }
@@ -46,6 +52,7 @@ class Checkout extends Component {
                     token={this.onToken}
                     stripeKey={'pk_test_5CFGtvmT81fWdVHdgHACJH6n'}
                     amount={this.props.total * 100}
+                    data-image={require('../assets/sign.jpg')}
                 >
                 </StripeCheckout>
             </div>
